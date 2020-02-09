@@ -1,0 +1,38 @@
+----- Tutorial Install Nagios -----
+1. #apt update
+2. #apt install apache2 apache2-utils php
+3. #apt install -y build-essential autoconf gcc libc6 make wget unzip libgd2-xpm-dev
+4. #useradd nagios && groupadd nagcmd
+5. #usermod -a -G nagcmd nagios && usermod -a -G nagcmd www-data
+6. #apt install proftpd //untuk menghubungkan ke filezilla
+7. #cd /home/ichsan/
+8. #mkdir /opt/nagios
+9. #cd /opt/nagios
+10. #tar xzf nagios-4.3.4.tar.gz
+11. #tar xzf nagios-plugins-2.3.1.tar.gz
+12. #cd nagios-4.3.4
+13. #./configure --with-nagios-group=nagios --with-command-group=nagcmd --with-httpd_conf=/etc/apache2/sites-enabled/
+14. #make all
+15. #make install
+16. #make install-init
+17. #make install-commandmode
+18. #make install-config
+19. #make install-webconf
+20. #a2enmod rewrite && a2enmod cgi
+21. #htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+22. #systemctl restart apache2.service
+23. #mkdir /opt/nagios && cd /opt/nagios
+24. #cd
+25. #cd /home/ichsan/
+26. #cd nagios-plugins-2.3.1
+27. #./configure
+28. #make
+29. #make install
+30. #/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+31. #systemctl enable nagios
+32. #systemctl reload nagios
+33. #systemctl start nagios
+----- End -----
+login
+user: nagiosadmin
+pw: nagios
